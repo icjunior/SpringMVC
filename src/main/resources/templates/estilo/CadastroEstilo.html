@@ -4,8 +4,9 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaft/layout"
 	layout:decorator="'layout/LayoutPadrao'">
 <head>
-	<title>Cadastro de estilo</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
+<title>Cadastro de estilo</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
 </head>
 <body>
 	<section layout:fragment="conteudo">
@@ -17,22 +18,18 @@
 
 		<div class="container-fluid">
 
-			<!-- <div class="alert  alert-danger  alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com
-				o nome informado.
-			</div> -->
+			<th:block th:include="fragments/MensagemSucesso"></th:block>
 
 			<form method="POST" th:object="${estilo}"
 				class="form-vertical  js-form-loading">
 
+				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+
 				<div class="row">
-					<div class="col-sm-12 form-group">
-						<label for="nome">Nome</label> 
-						<input id="nome" type="text" class="form-control" />
+					<div class="col-sm-12 form-group bw-required"
+						th:classappend="${#fields.hasErrors('nome')} ? has-error">
+						<label for="nome" class="control-label">Nome</label> <input
+							id="nome" type="text" class="form-control" th:field="*{nome}" />
 					</div>
 				</div>
 
@@ -42,7 +39,7 @@
 			</form>
 		</div>
 	</section>
-	
+
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
 		<script>
