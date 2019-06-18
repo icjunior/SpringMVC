@@ -50,6 +50,23 @@
 
 		<!-- thumbnailator - gerar thumbnail -->
 		<thumbnailator.version>0.4.8</thumbnailator.version>
+
+		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
+
+		<!-- Guava version -->
+		<guava.version>19.0</guava.version>
+
+		<!-- Commons Bean Utils -->
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+
+		<!-- Spring Security -->
+		<spring-security.version>4.1.1.RELEASE</spring-security.version>
+		
+		<!-- Thymeleaf Extras Spring Security -->
+		<thymeleaf-extras-springsecurity.version>3.0.0.RELEASE</thymeleaf-extras-springsecurity.version>
+		
+		<!-- JUnit -->
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<build>
@@ -207,17 +224,66 @@
 			<version>${thumbnailator.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.mxab.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-data-attribute</artifactId>
+			<version>${thymeleaf-extras-data-attribute.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Cache Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Spring Context Support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Apache Bean Utils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${commons-beanutils.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Spring Security WEB -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Spring Security Config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Thymeleaft Extras Spring Security -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>${thymeleaf-extras-springsecurity.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
 </project>

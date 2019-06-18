@@ -2,7 +2,8 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaft.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaft/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:brewer="http://brewer.algaworks.com">
 <head>
 	<title>Cadastro de cidade</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
@@ -16,34 +17,25 @@
 		</div>
 
 		<div class="container-fluid">
-
-			<!-- <div class="alert  alert-danger  alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com
-				o nome informado.
-			</div> -->
-
-			<form method="POST" th:object="${cidade}"
-				class="form-vertical  js-form-loading">
+			<form method="POST" th:object="${cidade}" class="form-vertical  js-form-loading" th:action="@{/cidades/novo}">
+			
+				<brewer:message/>
 
 				<div class="row">
 					<div class="col-sm-4 form-group  bw-required">
 						<label for="estado">Estado</label>
 						
 						<div class="bw-field-action"> 
-							<select id="estado" class="form-control">
+							<select id="estado" class="form-control" th:field="*{estado}">
 								<option value="">Selecione o estado</option>
-								<option value="">São Paulo</option>
+								<option th:each="estado : ${estados}" th:value="${estado.codigo}" th:text="${estado.nome}">São Paulo</option>
 							</select>
 						</div>
 					</div>
 				
 					<div class="col-sm-8 form-group bw-required">
 						<label for="nome">Nome</label> 
-						<input id="nome" type="text" class="form-control" />
+						<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 					</div>
 				</div>
 

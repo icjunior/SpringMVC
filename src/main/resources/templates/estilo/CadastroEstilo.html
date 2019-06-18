@@ -2,7 +2,7 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaft.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaft/layout"
-	layout:decorator="'layout/LayoutPadrao'">
+	layout:decorate="~{layout/LayoutPadrao}">
 <head>
 <title>Cadastro de estilo</title>
 <link rel="stylesheet" type="text/css"
@@ -32,8 +32,7 @@
 
 			<th:block th:include="fragments/MensagemSucesso"></th:block>
 
-			<form method="POST" th:object="${estilo}"
-				class="form-vertical  js-form-loading">
+			<form method="POST" th:object="${estilo}" class="form-vertical  js-form-loading" th:action="@{/estilos/novo}">
 
 				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 
