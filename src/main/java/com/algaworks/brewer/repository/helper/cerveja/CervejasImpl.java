@@ -1,6 +1,8 @@
 package com.algaworks.brewer.repository.helper.cerveja;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.dto.CervejaDTO;
+import com.algaworks.brewer.dto.InformacoesEstoqueProdutos;
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.repository.filter.CervejaFilter;
 import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
@@ -92,5 +95,14 @@ public class CervejasImpl implements CervejasQueries {
 				.setParameter("skuOuNome", skuOuNome + "%").getResultList();
 
 		return cervejasFiltradas;
+	}
+
+	@Override
+	public InformacoesEstoqueProdutos informacoesEstoque() {
+		Optional<InformacoesEstoqueProdutos> optional = Optional.ofNullable(manager.createQuery(
+				"select new com.algaworks.brewer.dto.InformacoesEstoqueProdutos(sum(valor*quantidadeEstoque), sum(quantidadeEstoque)) from Cerveja",
+				InformacoesEstoqueProdutos.class).getSingleResult());
+
+		return optional.orElse(new InformacoesEstoqueProdutos(BigDecimal.ZERO, 0L));
 	}
 }

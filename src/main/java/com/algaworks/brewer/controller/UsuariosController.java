@@ -11,9 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,7 +50,7 @@ public class UsuariosController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/novo", method = RequestMethod.POST)
+	@PostMapping({"/novo", "{\\+d}"})
 	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, Model model,
 			RedirectAttributes attributes) {
 		if (result.hasErrors()) {
@@ -75,7 +76,7 @@ public class UsuariosController {
 			HttpServletRequest httpServletRequest) {
 		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
 		mv.addObject("grupos", grupos.findAll());
-		
+
 		PageWrapper<Usuario> paginaWrapper = new PageWrapper<>(usuarios.filtrar(usuarioFilter, pageable),
 				httpServletRequest);
 		mv.addObject("pagina", paginaWrapper);
@@ -87,5 +88,13 @@ public class UsuariosController {
 	public void atualizarStatus(@RequestParam("codigos[]") Long[] codigos,
 			@RequestParam("status") StatusUsuario statusUsuario) {
 		cadastroUsuarioService.alterarStatus(codigos, statusUsuario);
+	}
+
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable Long codigo) {
+		Usuario usuario = usuarios.buscarComGrupos(codigo);
+		ModelAndView mv = novo(usuario);
+		mv.addObject(usuario);
+		return mv;
 	}
 }

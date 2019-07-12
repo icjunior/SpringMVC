@@ -15,9 +15,16 @@ Brewer.Security = (function() {
 	return Security;
 }());
 
+//numeral.locale('pt-br');
+numeral.language('pt-br');
+
 Brewer.formatarMoeda = function(valor){
-	numeral.locale('pt-br');
 	return numeral(valor).format('0,0.00');
+}
+
+Brewer.recuperarValor = function(valorFormatado){
+	//return numeral(valorFormatado).value();
+	return numeral().unformat(valorFormatado);
 }
 
 Brewer.MaskMoney = (function() {

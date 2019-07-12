@@ -175,10 +175,9 @@ CUSTOMIZAÇÃO DE COMPONENTES
 
 /* Tabela Item */
 .bw-tabela-item {
-	position: relative; /* Para que o painel de exclusão apareça dentro da linha */
-	
+	position: relative;
+	/* Para que o painel de exclusão apareça dentro da linha */
 	padding: 15px 0;
-	
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -188,7 +187,7 @@ CUSTOMIZAÇÃO DE COMPONENTES
 .bw-tabela-item:after {
 	clear: both;
 	display: block;
-    content: "";
+	content: "";
 }
 
 .bw-tabela-item ~ .bw-tabela-item {
@@ -202,7 +201,6 @@ CUSTOMIZAÇÃO DE COMPONENTES
 .bw-tabela-item__coluna--foto {
 	float: left;
 	width: 60px;
-	
 	text-align: center;
 }
 
@@ -246,19 +244,50 @@ CUSTOMIZAÇÃO DE COMPONENTES
 	font-size: 1.6em;
 }
 
-@media (min-width: 768px) { /* screen-sm-min */
+.bw-tabela-item__painel-exclusao {
+	position: absolute;
+	top: 0;
+	right: 100000px;
+	height: 100%;
+	width: 50%;
+	text-align: center;
+	padding-top: 35px;
+	background-color: #f0ad4e;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+.solicitando-exclusao .bw-tabela-item__painel-exclusao {
+	right: 0;
+	opacity: 1;
+}
+
+.bw-tabela-item__titulo-exclusao {
+	display: block;
+	margin-bottom: 5px;
+	color: #fff;
+	font-size: 1.3em;
+}
+
+/* Box */
+.negativo .aw-box__value {
+	color: red;
+}
+
+@media ( min-width : 768px) { /* screen-sm-min */
+	.bw-tabela-item__painel-exclusao {
+		width: 40%;
+		padding-top: 10px;
+	}
 	.bw-tabela-item__coluna {
 		float: left;
 		margin-left: 0px;
 	}
-	
 	.bw-tabela-item__coluna--detalhes {
 		width: calc(70% - 30px);
 	}
-	
 	.bw-tabela-item__coluna--valores {
 		width: calc(30% - 30px);
-
 		text-align: right;
 	}
 }
