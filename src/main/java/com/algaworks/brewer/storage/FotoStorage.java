@@ -1,18 +1,24 @@
 package com.algaworks.brewer.storage;
 
+import java.util.UUID;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FotoStorage {
 
-	public String salvarTemporariamente(MultipartFile[] files);
+	public final String THUMBNAIL_PERFIX = "thumbnail.";
 
-	public byte[] recuperaFotoTemporaria(String nome);
-
-	public void salvar(String foto);
+	public String salvar(MultipartFile[] files);
 
 	public byte[] recuperar(String nome);
 
 	public byte[] recuperarThumbnail(String fotoCerveja);
 
 	public void excluirFoto(String foto);
+
+	public String getUrl(String foto);
+
+	default String renomearArquivo(String nomeOriginal) {
+		return UUID.randomUUID().toString() + "_" + nomeOriginal;
+	}
 }

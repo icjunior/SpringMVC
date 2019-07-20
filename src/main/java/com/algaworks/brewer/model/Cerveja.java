@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.util.StringUtils;
 
+import com.algaworks.brewer.repository.listener.CervejaEntityListener;
 import com.algaworks.brewer.validation.SKU;
 
+@EntityListeners(CervejaEntityListener.class)
 @Entity
 @Table(name = "cerveja")
 public class Cerveja {
@@ -35,13 +38,13 @@ public class Cerveja {
 	private Long codigo;
 
 	@SKU
-	@NotBlank(message = "SKU não pode estar em branco")
+	@NotBlank
 	private String sku;
 
-	@NotBlank(message = "Nome não pode ser nulo")
+	@NotBlank
 	private String nome;
 
-	@NotBlank(message = "A descrição é obrigatória")
+	@NotBlank
 	@Size(min = 1, max = 50, message = "Tamanho deve estar entre 1 e 50 caracteres")
 	private String descricao;
 
@@ -82,6 +85,12 @@ public class Cerveja {
 
 	@Transient
 	private boolean novaFoto;
+
+	@Transient
+	private String urlFoto;
+
+	@Transient
+	private String urlThumbnailFoto;
 
 	@PrePersist
 	@PreUpdate
@@ -211,6 +220,22 @@ public class Cerveja {
 
 	public boolean isNova() {
 		return codigo == null;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+
+	public String getUrlThumbnailFoto() {
+		return urlThumbnailFoto;
+	}
+
+	public void setUrlThumbnailFoto(String urlThumbnailFoto) {
+		this.urlThumbnailFoto = urlThumbnailFoto;
 	}
 
 	@Override
