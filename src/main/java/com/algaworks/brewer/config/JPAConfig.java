@@ -48,6 +48,9 @@ public class JPAConfig {
 			String password = jdbUri.getUserInfo().split(":")[1];
 			String port = String.valueOf(jdbUri.getPort());
 			String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
+			
+			System.out.println("String de conexão " + jdbUrl);
+			
 			BasicDataSource dataSource = new BasicDataSource();
 			dataSource.setUrl(jdbUrl);
 			dataSource.setUsername(username);
