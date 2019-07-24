@@ -22,7 +22,7 @@
 		<mysql-connector-java.version>8.0.16</mysql-connector-java.version>
 
 		<!-- Spring MVC -->
-		<spring-framework.version>4.3.0.RELEASE</spring-framework.version>
+		<spring-framework.version>5.0.2.RELEASE</spring-framework.version>
 
 		<!-- Servlet API -->
 		<servlet.version>3.1.0</servlet.version>
@@ -37,7 +37,7 @@
 		<thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
 
 		<!-- Logging -->
-		<log4j.version>2.6</log4j.version>
+		<log4j.version>2.10.0</log4j.version>
 		<jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
 
 		<!-- JPA / Hibernate -->
@@ -52,9 +52,6 @@
 		<thumbnailator.version>0.4.8</thumbnailator.version>
 
 		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
-
-		<!-- Guava version -->
-		<guava.version>19.0</guava.version>
 
 		<!-- Commons Bean Utils -->
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
@@ -76,6 +73,16 @@
 
 		<!-- Apache Commons DBCP -->
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+
+		<!-- Jasper Reports -->
+		<jasperreports.version>6.3.0</jasperreports.version>
+		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version>
+
+		<!-- EhCache -->
+		<ehcache.version>3.8.0</ehcache.version>
+		
+		<!-- JCache -->
+		<jcache.version>1.1.1</jcache.version>
 	</properties>
 
 	<build>
@@ -280,14 +287,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Cache Guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
 		<!-- Spring Context Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -352,6 +351,35 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>${commons-dbcp2.version}</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<!-- Jasper Reports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>${jasperreports-fonts.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.cache/cache-api -->
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>${jcache.version}</version>
 		</dependency>
 	</dependencies>
 </project>
